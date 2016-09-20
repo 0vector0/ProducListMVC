@@ -23,5 +23,9 @@ public class Product implements Serializable {
     @Column(name = "price")
     private BigDecimal price;
 
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private Product product;
+
 
 }
