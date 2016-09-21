@@ -1,4 +1,4 @@
-package com.github.mykhalechko.productlistmvc.model;
+package com.github.mykhalechko.productlist.model;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -24,9 +24,9 @@ public class Product implements Serializable {
     @Column(name = "price")
     private BigDecimal price;
 
-    @ManyToOne
-    @JoinColumn(name = "user_id")
-    private Product product;
+//    @ManyToOne
+//    @JoinColumn(name = "user_id")
+//    private Product product;
 
     public static long getSerialVersionUID() {
         return serialVersionUID;
@@ -64,11 +64,11 @@ public class Product implements Serializable {
         this.price = price;
     }
 
-    public Product getProduct() {
-        return product;
-    }
-
-    public void setProduct(Product product) {
-        this.product = product;
-    }
+//    public Product getProduct() {
+//        return product;
+//    }
+//
+//    public void setProduct(Product product) {
+//        this.product = product;
+//    }
 }
