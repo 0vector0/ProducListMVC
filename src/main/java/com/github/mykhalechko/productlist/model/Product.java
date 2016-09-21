@@ -24,9 +24,9 @@ public class Product implements Serializable {
     @Column(name = "price")
     private BigDecimal price;
 
-//    @ManyToOne
-//    @JoinColumn(name = "user_id")
-//    private Product product;
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
 
     public static long getSerialVersionUID() {
         return serialVersionUID;
@@ -64,11 +64,11 @@ public class Product implements Serializable {
         this.price = price;
     }
 
-//    public Product getProduct() {
-//        return product;
-//    }
-//
-//    public void setProduct(Product product) {
-//        this.product = product;
-//    }
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
 }
