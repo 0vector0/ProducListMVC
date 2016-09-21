@@ -9,28 +9,27 @@ import java.util.Set;
 public class User {
 
     @Id
-    @SequenceGenerator(name = "user_id_seq", sequenceName = "user_id_seq", allocationSize = 1)
-    @GeneratedValue(generator = "user_id_seq", strategy = GenerationType.SEQUENCE)
-    private Long id;
-
+    @Column(name = "user_id")
+//    @SequenceGenerator(name = "user_id_seq", sequenceName = "user_id_seq", allocationSize = 1)
+//    @GeneratedValue(generator = "user_id_seq", strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private int userId;
     @Column(name = "username")
     private String username;
-
     @Column(name = "password")
     private String password;
-
     @Transient
     private String confirmPassword;
-
     @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
+
     private Set<Product> products = new HashSet<Product>();
 
-    public Long getId() {
-        return id;
+    public int getUserId() {
+        return userId;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setUserId(int userId) {
+        this.userId = userId;
     }
 
     public String getUsername() {

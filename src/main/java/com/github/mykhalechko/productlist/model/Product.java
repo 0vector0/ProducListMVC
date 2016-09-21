@@ -10,20 +10,18 @@ public class Product implements Serializable {
 
     private static final long serialVersionUID = 3749019693491946812L;
     @Id
-    @Column(name = "id")
-    @SequenceGenerator(name = "product_id_seq", sequenceName = "product_id_seq", allocationSize = 1)
-    @GeneratedValue(generator = "product_id_seq", strategy = GenerationType.SEQUENCE)
-    private long id;
+    @Column(name = "product_id")
+//    @SequenceGenerator(name = "product_id_seq", sequenceName = "product_id_seq", allocationSize = 1)
+//    @GeneratedValue(generator = "product_id_seq", strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private int productId;
 
     @Column(name = "name", nullable = false)
     private String name;
-
     @Column(name = "description")
     private String description;
-
     @Column(name = "price")
     private BigDecimal price;
-
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
@@ -32,12 +30,12 @@ public class Product implements Serializable {
         return serialVersionUID;
     }
 
-    public long getId() {
-        return id;
+    public int getProductId() {
+        return productId;
     }
 
-    public void setId(long id) {
-        this.id = id;
+    public void setProductId(int productId) {
+        this.productId = productId;
     }
 
     public String getName() {
