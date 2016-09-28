@@ -17,49 +17,45 @@
         <property name="suffix" value=".jsp"/>
     </bean>
 
+    <context:annotation-config/>
+
     <!--После чего объявить DataSource в spring.xml-->
     <!-- Database Information -->
-    <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
-          destroy-method="close">
+    <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
         <property name="driverClassName" value="org.postgresql.Driver"/>
-        <property name="url"
-                  value="jdbc:postgresql://localhost:5432/product-list-mvc"/>
+
+        <property name="url" value="jdbc:postgresql://localhost/product-list-mvc"/>
         <property name="username" value="postgres"/>
         <property name="password" value="root"/>
     </bean>
 
+
     <!--Его передать в EntityManagerFactory-->
-    <bean class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean" id="emf">
+    <bean id="factory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+        <!--<property name="persistenceXmlLocation" value="classpath:META-INF/persistence.xml"/>-->
         <property name="packagesToScan" value="com.github.mykhalechko.productlist.model"/>
         <property name="dataSource" ref="dataSource"/>
         <property name="jpaVendorAdapter" ref="jpaVendorAdapter"/>
-        <property name="persistenceUnitName" value="ProductManagement"/>
-        <property name="jpaProperties">
-            <props>
-                <prop key="hibernate.show_sql">true</prop>
-                <prop key="hibernate.hbm2ddl.auto">update</prop>
-            </props>
-        </property>
+        <property name="persistenceUnitName" value="JavaShop"/>
     </bean>
 
     <bean id="jpaVendorAdapter" class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
-        <property name="showSql" value="true"/>
+        <property name="showSql" value="false"/>
         <property name="generateDdl" value="true"/>
+        <property name="database" value="POSTGRESQL"/>
         <property name="databasePlatform" value="org.hibernate.dialect.PostgreSQL95Dialect"/>
     </bean>
 
     <!--После чего создать transactionManager используя EntityManagerFactory-->
     <bean id="txManager" class="org.springframework.orm.jpa.JpaTransactionManager">
-        <property name="entityManagerFactory" ref="emf"/>
+        <property name="entityManagerFactory" ref="factory"/>
         <property name="jpaDialect" ref="jpaDialect"/>
     </bean>
-
     <!--А в него внедрить JpaDialect-->
     <bean id="jpaDialect" class="org.springframework.orm.jpa.vendor.HibernateJpaDialect"/>
 
     <!--После чего включил декларативные транзакции с помощью-->
-    <tx:annotation-driven transaction-manager="txManager"/>
-
+    <tx:annotation-driven transaction-manager="txManager" proxy-target-class="true"/>
     <mvc:default-servlet-handler/>
     <mvc:annotation-driven/>
 

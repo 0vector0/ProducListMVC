@@ -8,7 +8,8 @@ import java.math.BigDecimal;
 @Table(name = "products")
 public class Product implements Serializable {
 
-    private static final long serialVersionUID = 3749019693491946812L;
+
+    private static final long serialVersionUID = -9014999225309767509L;
     @Id
     @Column(name = "product_id")
 //    @SequenceGenerator(name = "product_id_seq", sequenceName = "product_id_seq", allocationSize = 1)

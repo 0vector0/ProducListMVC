@@ -6,15 +6,15 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.persistence.PersistenceContextType;
 import java.util.List;
 
 @Repository
 public class ProductDaoImpl implements ProductDao {
 
+    @PersistenceContext
     private EntityManager entityManager;
 
-    @PersistenceContext(unitName = "ProductManagement", type = PersistenceContextType.EXTENDED)
+
     public void setEntityManager(EntityManager entityManager) {
         this.entityManager = entityManager;
     }
