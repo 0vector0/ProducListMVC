@@ -5,62 +5,62 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-@Table(name = "users")
+@Table(name = "puser")
 public class ProductUser {
 
     @Id
-    @Column(name = "user_id")
+    @Column(name = "puser_id")
 //    @SequenceGenerator(name = "user_id_seq", sequenceName = "user_id_seq", allocationSize = 1)
 //    @GeneratedValue(generator = "user_id_seq", strategy = GenerationType.SEQUENCE)
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int userId;
-    @Column(name = "username")
-    private String username;
-    @Column(name = "password")
-    private String password;
+    private int productUserId;
+    @Column(name = "pusername")
+    private String productUsername;
+    @Column(name = "ppassword")
+    private String productPassword;
     @Transient
-    private String confirmPassword;
+    private String productConfirmPassword;
 
-    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
+    //    @OneToMany(mappedBy = "product_user", fetch = FetchType.LAZY)
     private Set<Product> products = new HashSet<Product>();
 
-    public int getUserId() {
-        return userId;
+    public int getProductUserId() {
+        return productUserId;
     }
 
-    public void setUserId(int userId) {
-        this.userId = userId;
+    public void setProductUserId(int productUserId) {
+        this.productUserId = productUserId;
     }
 
-    public String getUsername() {
-        return username;
+    public String getProductUsername() {
+        return productUsername;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setProductUsername(String productUsername) {
+        this.productUsername = productUsername;
     }
 
-    public String getPassword() {
-        return password;
+    public String getProductPassword() {
+        return productPassword;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public void setProductPassword(String productPassword) {
+        this.productPassword = productPassword;
     }
 
-    public String getConfirmPassword() {
-        return confirmPassword;
+    public String getProductConfirmPassword() {
+        return productConfirmPassword;
     }
 
-    public void setConfirmPassword(String confirmPassword) {
-        this.confirmPassword = confirmPassword;
+    public void setProductConfirmPassword(String productConfirmPassword) {
+        this.productConfirmPassword = productConfirmPassword;
     }
 
-    public Set<Product> getProducts() {
-        return products;
-    }
-
-    public void setProducts(Set<Product> products) {
-        this.products = products;
-    }
+//    public Set<Product> getProducts() {
+//        return products;
+//    }
+//
+//    public void setProducts(Set<Product> products) {
+//        this.products = products;
+//    }
 }
