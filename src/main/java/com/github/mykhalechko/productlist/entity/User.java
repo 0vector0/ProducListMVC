@@ -13,31 +13,30 @@ public class User {
 //    @SequenceGenerator(name = "user_id_seq", sequenceName = "user_id_seq", allocationSize = 1)
 //    @GeneratedValue(generator = "user_id_seq", strategy = GenerationType.SEQUENCE)
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int userId;
+    private int id;
     @Column(name = "username")
-    private String username;
+    private String name;
     @Column(name = "password")
     private String password;
     @Transient
     private String confirmPassword;
     @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
-
     private Set<Product> products = new HashSet<Product>();
 
-    public int getUserId() {
-        return userId;
+    public int getId() {
+        return id;
     }
 
-    public void setUserId(int userId) {
-        this.userId = userId;
+    public void setId(int id) {
+        this.id = id;
     }
 
-    public String getUsername() {
-        return username;
+    public String getName() {
+        return name;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getPassword() {

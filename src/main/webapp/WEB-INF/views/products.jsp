@@ -66,12 +66,12 @@
         </tr>
         <c:forEach items="${listProducts}" var="product">
             <tr>
-                <td>${product.productId}</td>
-                <td><a href="/productdata/${product.productId}" target="_blank">${product.name}</a></td>
+                <td>${product.id}</td>
+                <td><a href="/productdata/${product.id}" target="_blank">${product.name}</a></td>
                 <td>${product.description}</td>
-                <td>${product.price}${product.price}</td>
-                <td><a href="<c:url value='/edit/${product.productId}'/>">Edit</a></td>
-                <td><a href="<c:url value='/remove/${product.productId}'/>">Delete</a></td>
+                <td>${product.price}</td>
+                <td><a href="<c:url value='/edit/${product.id}'/>">Edit</a></td>
+                <td><a href="<c:url value='/remove/${product.id}'/>">Delete</a></td>
             </tr>
         </c:forEach>
     </table>
@@ -87,12 +87,12 @@
         <c:if test="${!empty product.name}">
             <tr>
                 <td>
-                    <form:label path="productId">
+                    <form:label path="id">
                         <spring:message text="ID"/>
                     </form:label>
                 </td>
                 <td>
-                    <form:input path="productId" readonly="true" size="8"/>
+                    <form:input path="id" readonly="true" size="8"/>
                         <%--<form:hidden path="id"/>--%>
                 </td>
             </tr>

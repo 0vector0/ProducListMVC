@@ -26,7 +26,7 @@ public class ProductController {
 
     @RequestMapping(value = "/products/add", method = RequestMethod.POST)
     public String addProduct(@ModelAttribute("product") Product product) {
-        if (product.getProductId() == 0) {
+        if (product.getId() == 0) {
             this.productService.addProduct(product);
         } else {
             this.productService.updateProduct(product);
