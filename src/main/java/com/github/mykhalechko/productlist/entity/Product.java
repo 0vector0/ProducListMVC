@@ -5,7 +5,7 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 
 @Entity
-@Table(name = "product")
+@Table(name = "products")
 public class Product implements Serializable {
 
 
@@ -17,16 +17,15 @@ public class Product implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int productId;
 
-    @Column(name = "product_name", nullable = false)
-    private String productName;
-    @Column(name = "product_description")
-    private String productDescription;
-    @Column(name = "product_price")
-    private BigDecimal productPrice;
-
-    @ManyToOne(fetch = FetchType.LAZY/*, cascade = CascadeType.ALL*/)
-    @JoinColumn(name = "products")
-    private ProductUser productUser;
+    @Column(name = "name", nullable = false)
+    private String name;
+    @Column(name = "description")
+    private String description;
+    @Column(name = "price")
+    private BigDecimal price;
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
 
     public static long getSerialVersionUID() {
         return serialVersionUID;
@@ -40,35 +39,35 @@ public class Product implements Serializable {
         this.productId = productId;
     }
 
-    public String getProductName() {
-        return productName;
+    public String getName() {
+        return name;
     }
 
-    public void setProductName(String productName) {
-        this.productName = productName;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public String getProductDescription() {
-        return productDescription;
+    public String getDescription() {
+        return description;
     }
 
-    public void setProductDescription(String productDescription) {
-        this.productDescription = productDescription;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
-    public BigDecimal getProductPrice() {
-        return productPrice;
+    public BigDecimal getPrice() {
+        return price;
     }
 
-    public void setProductPrice(BigDecimal productPrice) {
-        this.productPrice = productPrice;
+    public void setPrice(BigDecimal price) {
+        this.price = price;
     }
 
-//    public ProductUser getProductUser() {
-//        return productUser;
-//    }
-//
-//    public void setProductUser(ProductUser productUser) {
-//        this.productUser = productUser;
-//    }
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
 }
