@@ -13,7 +13,6 @@ import javax.servlet.ServletRegistration;
 public class WebAppInitializer implements WebApplicationInitializer {
 
     @Override
-    //Hello
     public void onStartup(ServletContext servletContext) throws ServletException {
         System.out.println(" onStartup");
 
@@ -26,7 +25,7 @@ public class WebAppInitializer implements WebApplicationInitializer {
 
     private AnnotationConfigWebApplicationContext getContext() {
         AnnotationConfigWebApplicationContext context = new AnnotationConfigWebApplicationContext();
-        context.setConfigLocation("com.github.mykhalechko.webchat.util");
+        context.setConfigLocation("com.github.mykhalechko.productlist.util");
         return context;
     }
 
