@@ -1,6 +1,6 @@
 package com.github.mykhalechko.productlist.dao;
 
-import com.github.mykhalechko.productlist.model.Product;
+import com.github.mykhalechko.productlist.entity.Product;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 

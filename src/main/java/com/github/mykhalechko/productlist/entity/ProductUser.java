@@ -1,4 +1,4 @@
-package com.github.mykhalechko.productlist.model;
+package com.github.mykhalechko.productlist.entity;
 
 import javax.persistence.*;
 import java.util.HashSet;
@@ -6,7 +6,7 @@ import java.util.Set;
 
 @Entity
 @Table(name = "users")
-public class User {
+public class ProductUser {
 
     @Id
     @Column(name = "user_id")
@@ -20,8 +20,8 @@ public class User {
     private String password;
     @Transient
     private String confirmPassword;
-    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
 
+    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
     private Set<Product> products = new HashSet<Product>();
 
     public int getUserId() {

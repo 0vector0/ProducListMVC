@@ -1,6 +1,6 @@
 package com.github.mykhalechko.productlist.controller;
 
-import com.github.mykhalechko.productlist.model.Product;
+import com.github.mykhalechko.productlist.entity.Product;
 import com.github.mykhalechko.productlist.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

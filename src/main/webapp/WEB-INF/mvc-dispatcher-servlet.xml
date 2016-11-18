@@ -33,7 +33,7 @@
     <!--Его передать в EntityManagerFactory-->
     <bean id="factory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
         <!--<property name="persistenceXmlLocation" value="classpath:META-INF/persistence.xml"/>-->
-        <property name="packagesToScan" value="com.github.mykhalechko.productlist.model"/>
+        <property name="packagesToScan" value="com.github.mykhalechko.productlist.entity"/>
         <property name="dataSource" ref="dataSource"/>
         <property name="jpaVendorAdapter" ref="jpaVendorAdapter"/>
         <property name="persistenceUnitName" value="ProductListMVC"/>

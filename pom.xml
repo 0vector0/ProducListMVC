@@ -9,26 +9,30 @@
     <url>http://maven.apache.org</url>
 
     <properties>
-        <hibernate-version>5.2.2.Final</hibernate-version>
-        <spring.version>4.3.2.RELEASE</spring.version>
+        <hibernate-version>5.2.4.Final</hibernate-version>
+        <spring.version>4.3.4.RELEASE</spring.version>
+        <spring.data.version>1.10.4.RELEASE</spring.data.version>
     </properties>
-
 
     <dependencies>
 
-        <!-- https://mvnrepository.com/artifact/org.postgresql/postgresql -->
+        <dependency>
+            <groupId>javax</groupId>
+            <artifactId>javaee-web-api</artifactId>
+            <version>7.0</version>
+            <scope>provided</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>jstl</artifactId>
+            <version>1.2</version>
+        </dependency>
+
         <dependency>
             <groupId>org.postgresql</groupId>
             <artifactId>postgresql</artifactId>
-            <version>9.4-1201-jdbc41</version>
-        </dependency>
-
-        <!-- Apache Commons DBCP -->
-        <!-- https://mvnrepository.com/artifact/commons-dbcp/commons-dbcp -->
-        <dependency>
-            <groupId>commons-dbcp</groupId>
-            <artifactId>commons-dbcp</artifactId>
-            <version>1.4</version>
+            <version>9.4.1211</version>
         </dependency>
 
         <!-- Hibernate -->
@@ -38,7 +42,6 @@
             <artifactId>hibernate-entitymanager</artifactId>
             <version>${hibernate-version}</version>
         </dependency>
-
 
         <!-- Spring Core -->
         <dependency>
@@ -59,20 +62,17 @@
             <version>${spring.version}</version>
         </dependency>
 
-        <!-- https://mvnrepository.com/artifact/org.springframework/spring-orm -->
         <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-orm</artifactId>
-            <version>${spring.version}</version>
+            <groupId>org.springframework.data</groupId>
+            <artifactId>spring-data-jpa</artifactId>
+            <version>${spring.data.version}</version>
         </dependency>
 
-        <!-- https://mvnrepository.com/artifact/javax.servlet/jstl -->
-        <dependency>
-            <groupId>javax.servlet</groupId>
-            <artifactId>jstl</artifactId>
-            <version>1.2</version>
-        </dependency>
-
+        <!--<dependency>-->
+        <!--<groupId>org.springframework</groupId>-->
+        <!--<artifactId>spring-orm</artifactId>-->
+        <!--<version>${spring.version}</version>-->
+        <!--</dependency>-->
 
     </dependencies>
     <build>
@@ -82,8 +82,8 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <configuration>
-                    <source>1.6</source>
-                    <target>1.6</target>
+                    <source>1.8</source>
+                    <target>1.8</target>
                 </configuration>
             </plugin>
         </plugins>

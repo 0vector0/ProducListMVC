@@ -1,4 +1,4 @@
-package com.github.mykhalechko.productlist.model;
+package com.github.mykhalechko.productlist.entity;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -25,7 +25,7 @@ public class Product implements Serializable {
     private BigDecimal price;
     @ManyToOne
     @JoinColumn(name = "user_id")
-    private User user;
+    private ProductUser productUser;
 
     public static long getSerialVersionUID() {
         return serialVersionUID;
@@ -63,11 +63,11 @@ public class Product implements Serializable {
         this.price = price;
     }
 
-    public User getUser() {
-        return user;
+    public ProductUser getProductUser() {
+        return productUser;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setProductUser(ProductUser productUser) {
+        this.productUser = productUser;
     }
 }

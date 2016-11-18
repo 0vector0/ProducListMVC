@@ -1,7 +1,7 @@
 package com.github.mykhalechko.productlist.service;
 
 import com.github.mykhalechko.productlist.dao.ProductDao;
-import com.github.mykhalechko.productlist.model.Product;
+import com.github.mykhalechko.productlist.entity.Product;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
