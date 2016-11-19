@@ -36,14 +36,14 @@ public class ProductController {
     }
 
     @RequestMapping("/remove/{id}")
-    public String removeProduct(@PathVariable("id") int id) {
+    public String removeProduct(@PathVariable("id") long id) {
         this.productService.removeProduct(id);
 
         return "redirect:/products";
     }
 
     @RequestMapping("edit/{id}")
-    public String editProduct(@PathVariable("id") int id, Model model) {
+    public String editProduct(@PathVariable("id") long id, Model model) {
         model.addAttribute("product", this.productService.getProductById(id));
         model.addAttribute("listProducts", this.productService.listProducts());
 
@@ -51,7 +51,7 @@ public class ProductController {
     }
 
     @RequestMapping("productdata/{id}")
-    public String productData(@PathVariable("id") int id, Model model) {
+    public String productData(@PathVariable("id") long id, Model model) {
         model.addAttribute("product", this.productService.getProductById(id));
 
         return "productdata";

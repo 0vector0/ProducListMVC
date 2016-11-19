@@ -13,7 +13,7 @@ public class User {
 //    @SequenceGenerator(name = "user_id_seq", sequenceName = "user_id_seq", allocationSize = 1)
 //    @GeneratedValue(generator = "user_id_seq", strategy = GenerationType.SEQUENCE)
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id;
+    private long id;
     @Column(name = "username")
     private String name;
     @Column(name = "password")
@@ -23,11 +23,11 @@ public class User {
     @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
     private Set<Product> products = new HashSet<Product>();
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 

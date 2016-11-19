@@ -6,6 +6,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import java.util.Collections;
 import java.util.List;
 
 @Repository
@@ -30,20 +31,21 @@ public class ProductDaoImpl implements ProductDao {
     }
 
     @Transactional
-    public void removeProduct(int id) {
+    public void removeProduct(long id) {
         Product product = getProductById(id);
         if (product != null) {
             entityManager.remove(product);
         }
     }
 
-    public Product getProductById(int id) {
+    public Product getProductById(long id) {
         return entityManager.find(Product.class, id);
     }
 
     @SuppressWarnings("unchecked")
     public List<Product> listProducts() {
         List<Product> products = entityManager.createQuery("FROM Product", Product.class).getResultList();
+        Collections.sort(products, Product.ProductNameComparator);
         return products;
     }
 }
