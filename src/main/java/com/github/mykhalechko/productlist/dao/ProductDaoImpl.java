@@ -6,7 +6,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import java.util.Collections;
 import java.util.List;
 
 @Repository
@@ -45,7 +44,7 @@ public class ProductDaoImpl implements ProductDao {
     @SuppressWarnings("unchecked")
     public List<Product> listProducts() {
         List<Product> products = entityManager.createQuery("FROM Product", Product.class).getResultList();
-        Collections.sort(products, Product.ProductNameComparator);
+//        Collections.sort(products, Product.ProductNameComparator);
         return products;
     }
 }
