@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 @Service
@@ -45,7 +46,19 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public List<Product> listProducts() {
         List<Product> products = productRepository.findAll();
-        Collections.sort(products, Product.ProductNameComparator);
+        Collections.sort(products, new Comparator<Product>() {
+            @Override
+            public int compare(Product p1, Product p2) {
+                String ProductName1 = p1.getName().toUpperCase();
+                String ProductName2 = p2.getName().toUpperCase();
+
+                //ascending order
+                return ProductName1.compareTo(ProductName2);
+
+                //descending order
+                //return ProductName2.compareTo(ProductName1);
+            }
+        });
         return products;
     }
 }

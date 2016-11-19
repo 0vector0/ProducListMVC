@@ -3,7 +3,6 @@ package com.github.mykhalechko.productlist.entity;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.math.BigDecimal;
-import java.util.Comparator;
 
 @Entity
 @Table(name = "products")
@@ -11,19 +10,7 @@ public class Product implements Serializable {
 
 
     private static final long serialVersionUID = -9014999225309767509L;
-    public static Comparator<Product> ProductNameComparator = new Comparator<Product>() {
 
-        public int compare(Product p1, Product p2) {
-            String ProductName1 = p1.getName().toUpperCase();
-            String ProductName2 = p2.getName().toUpperCase();
-
-            //ascending order
-            return ProductName1.compareTo(ProductName2);
-
-            //descending order
-            //return StudentName2.compareTo(StudentName1);
-        }
-    };
     @Id
     @Column(name = "product_id")
 //    @SequenceGenerator(name = "product_id_seq", sequenceName = "product_id_seq", allocationSize = 1)
