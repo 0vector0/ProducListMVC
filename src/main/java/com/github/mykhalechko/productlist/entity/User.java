@@ -1,6 +1,10 @@
 package com.github.mykhalechko.productlist.entity;
 
+import org.hibernate.validator.constraints.Email;
+import org.hibernate.validator.constraints.NotEmpty;
+
 import javax.persistence.*;
+import javax.validation.constraints.Size;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -14,14 +18,29 @@ public class User {
 //    @GeneratedValue(generator = "user_id_seq", strategy = GenerationType.SEQUENCE)
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
-    @Column(name = "username")
+
+    @Column(name = "name", unique = true)
+    @Size(min = 2, max = 30)
     private String name;
-    @Column(name = "password")
+
+    @Column(name = "email", unique = true)
+    @NotEmpty
+    @Email
+    private String email;
+    @Column(name = "password", nullable = false)
     private String password;
     @Transient
     private String confirmPassword;
     @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
     private Set<Product> products = new HashSet<Product>();
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
 
     public long getId() {
         return id;
@@ -61,5 +80,17 @@ public class User {
 
     public void setProducts(Set<Product> products) {
         this.products = products;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", email='" + email + '\'' +
+                ", password='" + password + '\'' +
+                ", confirmPassword='" + confirmPassword + '\'' +
+                ", products=" + products +
+                '}';
     }
 }
