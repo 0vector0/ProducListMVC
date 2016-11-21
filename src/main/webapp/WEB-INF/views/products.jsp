@@ -2,6 +2,7 @@
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 <%@ taglib prefix="from" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="s" uri="http://www.springframework.org/tags" %>
 <%@ page session="false" %>
 <html>
 <head>
@@ -47,9 +48,9 @@
     </style>
 </head>
 <body>
-<a href="../../index.jsp">Back to main menu</a>
 
-<br/>
+<a href="${s:mvcUrl('getIndex').build()}">Back to main menu</a>
+
 <br/>
 
 <h1>Product List</h1>
