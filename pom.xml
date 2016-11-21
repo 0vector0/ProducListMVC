@@ -9,7 +9,8 @@
     <url>http://maven.apache.org</url>
 
     <properties>
-        <hibernate-version>5.2.4.Final</hibernate-version>
+        <hibernate.version>5.2.4.Final</hibernate.version>
+        <hibernate.validator.version>5.3.2.Final</hibernate.validator.version>
         <spring.version>4.3.4.RELEASE</spring.version>
         <spring.data.version>1.10.4.RELEASE</spring.data.version>
     </properties>
@@ -40,7 +41,20 @@
         <dependency>
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-entitymanager</artifactId>
-            <version>${hibernate-version}</version>
+            <version>${hibernate.version}</version>
+        </dependency>
+
+        <!-- Hibernate validator-->
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-validator</artifactId>
+            <version>${hibernate.validator.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>javax.validation</groupId>
+            <artifactId>validation-api</artifactId>
+            <version>1.1.0.Final</version>
         </dependency>
 
         <!-- Spring Core -->
