@@ -1,0 +1,19 @@
+server:
+  port: 8090
+
+spring:
+  mandatory-file-encoding: UTF-8
+
+  jpa:
+    database: POSTGRESQL
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+
+  datasource:
+    url: jdbc:postgresql://localhost:5432/productlist
+    username: postgres
+    password: root
+    driverClassName: org.postgresql.Driver
+
+
