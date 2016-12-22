@@ -1,11 +1,6 @@
 package com.github.mykhalechko.productlist.entity;
 
-import org.hibernate.validator.constraints.Email;
-import org.hibernate.validator.constraints.NotEmpty;
-
 import javax.persistence.*;
-import javax.validation.constraints.Size;
-import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -13,49 +8,37 @@ import java.util.Set;
 public class User {
 
     @Id
-    @Column(name = "user_id")
-//    @SequenceGenerator(name = "user_id_seq", sequenceName = "user_id_seq", allocationSize = 1)
-//    @GeneratedValue(generator = "user_id_seq", strategy = GenerationType.SEQUENCE)
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private long id;
+    private Long id;
 
-    @Column(name = "name", unique = true)
-    @Size(min = 2, max = 30)
-    private String name;
+    @Column(name = "username")
+    private String username;
 
-    @Column(name = "email", unique = true)
-    @NotEmpty
-    @Email
-    private String email;
-    @Column(name = "password", nullable = false)
+    @Column(name = "password")
     private String password;
+
     @Transient
     private String confirmPassword;
-    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
-    private Set<Product> products = new HashSet<Product>();
 
-    public String getEmail() {
-        return email;
-    }
+    @ManyToMany
+    @JoinTable(name = "user_roles", joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "role_id"))
+    private Set<Role> roles;
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getUsername() {
+        return username;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getPassword() {
@@ -74,23 +57,11 @@ public class User {
         this.confirmPassword = confirmPassword;
     }
 
-    public Set<Product> getProducts() {
-        return products;
+    public Set<Role> getRoles() {
+        return roles;
     }
 
-    public void setProducts(Set<Product> products) {
-        this.products = products;
-    }
-
-    @Override
-    public String toString() {
-        return "User{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", email='" + email + '\'' +
-                ", password='" + password + '\'' +
-                ", confirmPassword='" + confirmPassword + '\'' +
-                ", products=" + products +
-                '}';
+    public void setRoles(Set<Role> roles) {
+        this.roles = roles;
     }
 }
