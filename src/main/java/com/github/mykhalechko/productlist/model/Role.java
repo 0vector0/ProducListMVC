@@ -1,25 +1,17 @@
-package com.github.mykhalechko.productlist.entity;
+package com.github.mykhalechko.productlist.model;
 
 import javax.persistence.*;
 import java.util.Set;
 
 @Entity
-@Table(name = "roles")
+@Table(name = "role")
 public class Role {
+    private Long id;
+    private String name;
+    private Set<User> users;
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
-
-    @Column(name = "name")
-    private String name;
-
-    @ManyToMany(mappedBy = "roles")
-    private Set<User> users;
-
-    public Role() {
-    }
-
     public Long getId() {
         return id;
     }
@@ -36,20 +28,12 @@ public class Role {
         this.name = name;
     }
 
+    @ManyToMany(mappedBy = "roles")
     public Set<User> getUsers() {
         return users;
     }
 
     public void setUsers(Set<User> users) {
         this.users = users;
-    }
-
-    @Override
-    public String toString() {
-        return "Role{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", users=" + users +
-                '}';
     }
 }
