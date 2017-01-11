@@ -1,17 +1,17 @@
 package com.github.mykhalechko.productlist.service;
 
-import com.github.mykhalechko.productlist.dao.UserDao;
+import com.github.mykhalechko.productlist.entity.User;
+import com.github.mykhalechko.productlist.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @Service
-public class UserService implements UserDetailsService {
+public class UserService {
 
     @Autowired
-    private UserDao userDao;
+    private UserRepository userRepository;
 
 //    @Autowired
 //    private RoleDao roleDao;
@@ -32,9 +32,7 @@ public class UserService implements UserDetailsService {
 //        return userDao.findByUsername(username);
 //    }
 
-    @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        return userDao.findByUsername(username).orElseThrow(() ->
-                new UsernameNotFoundException("user " + username + " was not found!"));
+    public Optional<User> getUserByUserName(String username) {
+        return userRepository.findOneByUsername(username);
     }
 }
