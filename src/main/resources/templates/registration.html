@@ -1,0 +1,50 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.w3.org/1999/xhtml" lang="en">
+
+<head>
+    <title>Registration</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"/>
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
+          integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous"/>
+    <!-- todo <link href="${contextPath}/resources/css/common.css" rel="stylesheet">-->
+</head>
+<body>
+<div class="container">
+
+    <form method="post" th:action="@{/registration}" th:object="${userForm}" class="form-signin">
+        <input type="hidden"
+               th:name="${_csrf.parameterName}"
+               th:value="${_csrf.token}"/>
+        <h2 class="form-signin-heading">Create your account</h2>
+
+        <div class="form-group">
+            <label for="username">Username</label>
+            <input type="text" class="form-control" id="username" placeholder="Username" autofocus="true"
+                   name="username"/>
+        </div>
+        <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" class="form-control" id="password" placeholder="Password"
+                   name="password"/>
+        </div>
+        <div class="form-group">
+            <label for="passwordConfirm">Password</label>
+            <input type="password" class="form-control" id="passwordConfirm" placeholder="PasswordConfirm"
+                   name="passwordConfirm"/>
+        </div>
+        <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" class="form-control" id="email" placeholder="Email"
+                   name="email"/>
+        </div>
+        <button type="submit" class="btn btn-default">Registration</button>
+    </form>
+</div>
+</body>
+</html>
