@@ -2,6 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 
 <head>
+    <!--<head th:replace=“layout :: site-head”>-->
     <title>Index</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 
@@ -16,7 +17,14 @@
     <link rel="stylesheet" href="/css/sticky-footer.css"/>
 </head>
 
+
+<!--<head th:replace=“layout :: site-head”>-->
+<!--<title>Welcome to Spring MVC Blog</title>-->
+<!--</head>-->
+
 <body>
+
+<!--<header th:replace=“layout :: site-header” />-->
 
 <nav class="navbar navbar-default navbar-static-top">
     <div class="container">
@@ -37,6 +45,11 @@
                 <li><a href="#contact">Contact</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <a href="user" th:href="@{/user}">
+                        <span th:text="'Hello, ' + ${#authentication.name} + '!'"/>
+                    </a>
+                </li>
                 <li><a href="/login">Login</a></li>
                 <li><a href="/registration">Registration</a></li>
                 <li><a href="/logout">Logout</a></li>
@@ -60,11 +73,15 @@
 </div>
 
 
-<footer class="footer">
-    <div class="container">
-        <p class="text-muted">Now is: <b th:text="${execInfo.now.time}"></b></p>
-    </div>
-</footer>
+<!--<footer class="footer">-->
+<!--<div class="container">-->
+<!--<p class="text-muted">Now is: <b th:text="${execInfo.now.time}"></b></p>-->
+<!--</div>-->
+<!--</footer>-->
+
+
+<!--<div th:insert="footer :: copy"></div>-->
 </body>
 
 </html>
+
