@@ -5,38 +5,38 @@
 
 <head>
     <title>Add product</title>
-
 </head>
 <body>
 
-
 <section layout:fragment="content">
     <div class="container">
+        <div class="row">
 
-        <!--<div class="seedstarterlist" th:unless="${#lists.isEmpty(listProducts)}">-->
-
-        <!--<h2 th:text="#{title.list}">List of Seed Starters</h2>-->
-
-        <table>
-            <thead>
-            <tr>
-                <th>User name</th>
-                <th>name</th>
-                <th>description</th>
-                <th>price</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr th:each="product : ${listProducts}">
-                <td th:text="${{product.user.username}}">price</td>
-                <td th:text="${{product.name}}">name</td>
-                <td th:text="${{product.description}}">description</td>
-                <td th:text="${{product.price}}">price</td>
-            </tr>
-            </tbody>
-        </table>
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>User name</th>
+                    <th>name</th>
+                    <th>description</th>
+                    <th>price</th>
+                    <th>action</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="product : ${listProducts}">
+                    <td th:text="${{product.user.username}}">price</td>
+                    <td th:text="${{product.name}}">name</td>
+                    <td th:text="${{product.description}}">description</td>
+                    <td th:text="${{product.price}}">price</td>
+                    <td>
+                        <a class="btn btn-default" href="#" th:href="@{'/products/delete/' + ${product.id}}">delete</a>
+                        <a class="btn btn-default" href="#" th:href="@{'/products/edit/' + ${product.id}}">edit</a>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
     </div>
-
 </section>
 </body>
 </html>

@@ -52,14 +52,14 @@ public class ProductController {
         return "redirect:/";
     }
 
-    @RequestMapping("/remove/{id}")
+    @RequestMapping("/delete/{id}")
     public String removeProduct(@PathVariable("id") long id) {
         this.productService.deleteById(id);
 
         return "redirect:/products";
     }
 
-    @RequestMapping("edit/{id}")
+    @RequestMapping("/edit/{id}")
     public String editProduct(@PathVariable("id") long id, Model model) {
         model.addAttribute("product", this.productService.findById(id));
         model.addAttribute("listProducts", this.productService.findAll());
