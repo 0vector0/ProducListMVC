@@ -1,73 +1,42 @@
-<!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<!DOCTYPE HTML>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" xmlns:th="http://www.w3.org/1999/xhtml"
+      xmlns="http://www.w3.org/1999/xhtml"
+      layout:decorator="layout">
+
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-    <title>Products Page</title>
-    <style type="text/css">
-        .tg {
-            border-collapse: collapse;
-            border-spacing: 0;
-            border-color: #ccc;
-        }
+    <title>Add product</title>
 
-        .tg td {
-            font-family: Arial, sans-serif;
-            font-size: 14px;
-            padding: 10px 5px;
-            border-style: solid;
-            border-width: 1px;
-            overflow: hidden;
-            word-break: normal;
-            border-color: #ccc;
-            color: #333;
-            background-color: #fff;
-        }
-
-        .tg th {
-            font-family: Arial, sans-serif;
-            font-size: 14px;
-            font-weight: normal;
-            padding: 10px 5px;
-            border-style: solid;
-            border-width: 1px;
-            overflow: hidden;
-            word-break: normal;
-            border-color: #ccc;
-            color: #333;
-            background-color: #f0f0f0;
-        }
-
-        .tg .tg-4eph {
-            background-color: #f9f9f9
-        }
-    </style>
 </head>
 <body>
-<a href="/">Back to main menu</a>
-<br/>
-
-<h1>Product List</h1>
-<!--<div th:if="${not #lists.isEmpty(listProducts)}">-->
-<table class="tg">
-    <tr>
-        <th width="80">ID</th>
-        <th width="120">Name</th>
-        <th width="120">Description</th>
-        <th width="120">Price</th>
-        <th width="60">Edit</th>
-        <th width="60">Delete</th>
-    </tr>
-    <tr th:each="product : ${listProducts}">
-        <td th:text="${product.id}">id</td>
-        <td th:text="${product.name}">name</td>
-        <td th:text="${product.description}">description</td>
-        <td th:text="${product.price}">price</td>
-        <td><a href="#">Edit ...</a></td>
-        <td><a href="#">Delete ...</a></td>
-    </tr>
 
 
-</table>
-<!--</div>-->
+<section layout:fragment="content">
+    <div class="container">
+
+        <!--<div class="seedstarterlist" th:unless="${#lists.isEmpty(listProducts)}">-->
+
+        <!--<h2 th:text="#{title.list}">List of Seed Starters</h2>-->
+
+        <table>
+            <thead>
+            <tr>
+                <th>User name</th>
+                <th>name</th>
+                <th>description</th>
+                <th>price</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="product : ${listProducts}">
+                <td th:text="${{product.user.username}}">price</td>
+                <td th:text="${{product.name}}">name</td>
+                <td th:text="${{product.description}}">description</td>
+                <td th:text="${{product.price}}">price</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+</section>
 </body>
 </html>

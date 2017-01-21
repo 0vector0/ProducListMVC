@@ -5,6 +5,7 @@ import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.persistence.*;
 import javax.validation.constraints.Size;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -17,11 +18,9 @@ public class User {
 //    @GeneratedValue(generator = "user_id_seq", strategy = GenerationType.SEQUENCE)
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
-
     @Column(name = "username", unique = true)
     @Size(min = 2, max = 30)
     private String username;
-
     @Column(name = "email", unique = true)
     @NotEmpty
     @Email
@@ -30,13 +29,20 @@ public class User {
     private String password;
     @Transient
     private String passwordConfirm;
-
     @ManyToMany
     @JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<Role> roles;
+    //    @JoinTable(name = "user_product", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "product_id"))
+    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
+    private Set<Product> products = new HashSet<Product>();
 
-//    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
-//    private Set<Product> products = new HashSet<Product>();
+    public Set<Product> getProducts() {
+        return products;
+    }
+
+    public void setProducts(Set<Product> products) {
+        this.products = products;
+    }
 
     public String getEmail() {
         return email;

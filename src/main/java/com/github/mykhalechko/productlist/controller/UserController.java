@@ -47,7 +47,7 @@ public class UserController {
         model.addAttribute(userForm.getUsername(), "name");
 
 
-        return "redirect:/welcome";
+        return "redirect:/";
     }
 
     @RequestMapping(value = "/login", method = RequestMethod.GET)
@@ -61,8 +61,4 @@ public class UserController {
         return "login";
     }
 
-    @RequestMapping(value = {"/welcome"}, method = RequestMethod.GET)
-    public String welcome(Model model) {
-        return "welcome";
-    }
 }

@@ -1,18 +1,24 @@
-//package com.github.mykhalechko.productlist.service;
-//
-//
-//import com.github.mykhalechko.productlist.model.Product;
-//
-//import java.util.List;
-//
-//public interface ProductService {
-//    public void addProduct(Product product);
-//
-//    public void updateProduct(Product product);
-//
-//    public void removeProduct(long id);
-//
-//    public Product getProductById(long id);
-//
-//    public List<Product> listProducts();
-//}
+package com.github.mykhalechko.productlist.service;
+
+
+import com.github.mykhalechko.productlist.model.Product;
+
+import java.util.List;
+
+public interface ProductService {
+
+    List<Product> findAll();
+
+    List<Product> findAllUserProducts(Long id);
+
+    Product findById(Long id);
+
+    Product create(Product product);
+
+    Product edit(Product product);
+
+    void deleteById(Long id);
+
+}
+
+
