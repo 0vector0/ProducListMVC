@@ -1,12 +1,29 @@
-<!DOCTYPE HTML>
-<html>
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
 <head>
-    <title>Products</title>
+    <title>Index</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"/>
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
+          integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous"/>
 </head>
+
 <body>
-<a href="/registration">Registration</a>
-<a href="/products">Products list</a>
-<p>Get your greeting <a href="/hello">here</a></p>
+<div class="container">
+
+    <div class="starter-template">
+        <h1>Welcome to Spring MVC learning project</h1>
+        <p class="lead"> Now is: <b th:text="${execInfo.now.time}"></b></p>
+        <a class="btn btn-lg btn-primary btn-block" href="/registration">Registration</a>
+        <a class="btn btn-lg btn-primary btn-block" href="/login">Login</a>
+    </div>
+</div>
 </body>
+
 </html>
