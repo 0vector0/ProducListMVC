@@ -4,13 +4,17 @@
       layout:decorator="layout">
 
 <head>
-    <title>Add product</title>
+    <title>Products</title>
 </head>
 <body>
 
 <section layout:fragment="content">
     <div class="container">
-        <div class="row">
+        <div class="panel panel-default">
+
+            <div class="panel-body">
+                <a class="btn btn-default" href="#" th:href="@{'/products/add/'}">Add new product</a>
+            </div>
 
             <table class="table">
                 <thead>
@@ -29,8 +33,10 @@
                     <td th:text="${{product.description}}">description</td>
                     <td th:text="${{product.price}}">price</td>
                     <td>
-                        <a class="btn btn-default" href="#" th:href="@{'/products/delete/' + ${product.id}}">delete</a>
-                        <a class="btn btn-default" href="#" th:href="@{'/products/edit/' + ${product.id}}">edit</a>
+                        <a class="btn btn-default" href="#"
+                           th:href="@{'/products/delete/' + ${product.id}}">delete</a>
+                        <a class="btn btn-default" href="#"
+                           th:href="@{'/products/edit/' + ${product.id}}">edit</a>
                     </td>
                 </tr>
                 </tbody>
