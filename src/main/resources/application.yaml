@@ -16,3 +16,6 @@ spring:
     username: postgres
     password: root
     driverClassName: org.postgresql.Driver
+
+  thymeleaf:
+    cache: false
