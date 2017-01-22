@@ -48,8 +48,7 @@ public class ProductController {
 
         product.setUser(getAuthenticationUser());
         this.productService.create(product);
-//        return "redirect:/products";
-        return "redirect:/";
+        return "redirect:/products";
     }
 
     @RequestMapping("/delete/{id}")
@@ -59,19 +58,27 @@ public class ProductController {
         return "redirect:/products";
     }
 
-    @RequestMapping("/edit/{id}")
+    @RequestMapping(value = "/edit/{id}")
     public String editProduct(@PathVariable("id") long id, Model model) {
         model.addAttribute("product", this.productService.findById(id));
-        model.addAttribute("listProducts", this.productService.findAll());
-
-        return "products";
+        return "editproduct";
     }
 
-    @RequestMapping("products/{id}")
+
+    @RequestMapping(value = "/save", method = RequestMethod.POST)
+    public String editProduct(@ModelAttribute("product") Product product) {
+
+        System.err.println(product.getId());
+
+        this.productService.edit(product);
+        return "redirect:/products";
+    }
+
+    @RequestMapping("/data/{id}")
     public String productData(@PathVariable("id") long id, Model model) {
         model.addAttribute("product", this.productService.findById(id));
 
-        return "products";
+        return "product";
     }
 
     private User getAuthenticationUser() {

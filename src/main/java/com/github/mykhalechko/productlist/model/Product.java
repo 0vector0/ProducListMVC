@@ -19,12 +19,12 @@ public class Product implements Serializable {
     private long id;
     @Column(name = "product_name", nullable = false)
     private String name;
-    @Column(name = "product_description")
+    @Column(name = "product_description", nullable = false)
     private String description;
     @Column(name = "product_price")
     private BigDecimal price;
     @ManyToOne
-    @JoinColumn(name = "user_id")
+    @JoinColumn(name = "user_id", nullable = false)
     private User user;
 
     public static long getSerialVersionUID() {

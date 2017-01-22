@@ -1,0 +1,45 @@
+<!DOCTYPE HTML>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" xmlns:th="http://www.w3.org/1999/xhtml"
+      xmlns="http://www.w3.org/1999/xhtml"
+      layout:decorator="layout">
+
+<head>
+    <title>Products</title>
+</head>
+<body>
+
+<section layout:fragment="content">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 col-md-offset-3">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <dl class="dl-horizontal">
+                            <dt>User name</dt>
+                            <dd th:text="${{product.user.username}}">username</dd>
+                            <dt>Product name</dt>
+                            <dd th:text="${{product.name}}">username</dd>
+                            <dt>Description</dt>
+                            <dd th:text="${{product.description}}">description</dd>
+                            <dt>Price</dt>
+                            <dd th:text="${{product.price}}">price</dd>
+                        </dl>
+                        <div class="text-center">
+                            <div class="btn-group" role="group" aria-label="...">
+                                <a class="btn btn-default" href="#"
+                                   th:href="@{'/products/add/'}">Add</a>
+                                <a class="btn btn-default" href="#"
+                                   th:href="@{'/products/edit/' + ${product.id}}">Edit</a>
+                                <a class="btn btn-default" href="#"
+                                   th:href="@{'/products/delete/' + ${product.id}}">Delete</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</section>
+</body>
+</html>
