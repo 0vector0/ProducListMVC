@@ -15,32 +15,35 @@
             <div class="panel-body">
                 <a class="btn btn-default" href="#" th:href="@{'/products/add/'}">Add new product</a>
             </div>
-
-            <table class="table">
-                <thead>
-                <tr>
-                    <th>User name</th>
-                    <th>name</th>
-                    <th>description</th>
-                    <th>price</th>
-                    <th>action</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr th:each="product : ${listProducts}">
-                    <td th:text="${{product.user.username}}">price</td>
-                    <td th:text="${{product.name}}">name</td>
-                    <td th:text="${{product.description}}">description</td>
-                    <td th:text="${{product.price}}">price</td>
-                    <td>
-                        <a class="btn btn-default" href="#"
-                           th:href="@{'/products/delete/' + ${product.id}}">delete</a>
-                        <a class="btn btn-default" href="#"
-                           th:href="@{'/products/edit/' + ${product.id}}">edit</a>
-                    </td>
-                </tr>
-                </tbody>
-            </table>
+            <div class="table-responsive">
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th>User name</th>
+                        <th>name</th>
+                        <th>description</th>
+                        <th>price</th>
+                        <th>action</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="product : ${listProducts}">
+                        <td th:text="${{product.user.username}}">username</td>
+                        <td th:text="${{product.name}}">product.name</td>
+                        <td th:text="${{product.description}}">description</td>
+                        <td th:text="${{product.price}}">price</td>
+                        <td>
+                            <a class="btn btn-default" href="#"
+                               th:href="@{'/products/delete/' + ${product.id}}">delete</a>
+                            <a class="btn btn-default" href="#"
+                               th:href="@{'/products/edit/' + ${product.id}}">edit</a>
+                            <a class="btn btn-default" href="#"
+                               th:href="@{'/products/data/' + ${product.id}}">information</a>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
 </section>
