@@ -5,6 +5,8 @@ import com.github.mykhalechko.productlist.model.User;
 import com.github.mykhalechko.productlist.repository.RoleRepository;
 import com.github.mykhalechko.productlist.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -36,5 +38,10 @@ public class UserServiceImpl implements UserService {
     @Override
     public User findById(Long id) {
         return userRepository.findOne(id);
+    }
+
+    public User getAuthenticationUser() {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        return findByUsername(auth.getName());
     }
 }

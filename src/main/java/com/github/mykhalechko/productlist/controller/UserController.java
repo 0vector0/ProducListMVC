@@ -11,6 +11,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class UserController {
@@ -41,15 +42,18 @@ public class UserController {
         return "redirect:/";
     }
 
-    @RequestMapping(value = "/login", method = RequestMethod.GET)
-    public String login(Model model, String error, String logout) {
-//        if (error != null)
-//            model.addAttribute("error", "Your username and password is invalid.");
-//
-//        if (logout != null)
-//            model.addAttribute("message", "You have been logged out successfully.");
-
+    @RequestMapping("/login")
+    public String getLogin(@RequestParam(value = "error", required = false) String error,
+                           @RequestParam(value = "logout", required = false) String logout,
+                           Model model) {
+        model.addAttribute("error", error != null);
+        model.addAttribute("logout", logout != null);
         return "login";
     }
 
+    @RequestMapping("/user")
+    public String getUser(Model model) {
+        model.addAttribute("user", userService.getAuthenticationUser());
+        return "user";
+    }
 }

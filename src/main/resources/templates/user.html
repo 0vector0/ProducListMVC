@@ -1,0 +1,38 @@
+<!DOCTYPE HTML>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" xmlns:th="http://www.w3.org/1999/xhtml"
+      xmlns="http://www.w3.org/1999/xhtml"
+      layout:decorator="layout">
+
+<head>
+    <title>Products</title>
+</head>
+<body>
+
+<section layout:fragment="content">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 col-md-offset-3">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <dl class="dl-horizontal">
+                            <dt>Name</dt>
+                            <dd th:text="${{user.username}}">username</dd>
+                            <dt>Email</dt>
+                            <dd th:text="${{user.email}}">email</dd>
+                            <dt>Roles</dt>
+                            <dd>
+                                <ul class="list-unstyled">
+                                    <li th:each="role : ${user.roles}">
+                                        <span th:text="${{role.name}}">rolename</span>
+                                    </li>
+                                </ul>
+                            </dd>
+                        </dl>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+</body>
+</html>

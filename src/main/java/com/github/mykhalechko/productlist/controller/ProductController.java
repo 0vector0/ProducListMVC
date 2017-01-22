@@ -1,12 +1,9 @@
 package com.github.mykhalechko.productlist.controller;
 
 import com.github.mykhalechko.productlist.model.Product;
-import com.github.mykhalechko.productlist.model.User;
 import com.github.mykhalechko.productlist.service.ProductService;
 import com.github.mykhalechko.productlist.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -28,9 +25,7 @@ public class ProductController {
 
     @RequestMapping(method = RequestMethod.GET)
     public String listProducts(Model model) {
-//        model.addAttribute("product", new Product());
-
-        List<Product> products = this.productService.findAllUserProducts(getAuthenticationUser().getId());
+        List<Product> products = this.productService.findAllUserProducts(userService.getAuthenticationUser().getId());
         System.out.println(products);
         model.addAttribute("listProducts", products);
         return "products";
@@ -46,7 +41,7 @@ public class ProductController {
     @RequestMapping(value = "/add", method = RequestMethod.POST)
     public String addProduct(@ModelAttribute("product") Product product) {
 
-        product.setUser(getAuthenticationUser());
+        product.setUser(userService.getAuthenticationUser());
         this.productService.create(product);
         return "redirect:/products";
     }
@@ -81,8 +76,5 @@ public class ProductController {
         return "product";
     }
 
-    private User getAuthenticationUser() {
-        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        return userService.findByUsername(auth.getName());
-    }
+
 }
