@@ -1,13 +1,12 @@
 package com.github.mykhalechko.productlist.controller;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Files;
 
 @Controller
 public class FileController {
@@ -34,12 +33,22 @@ public class FileController {
 //            return "You failed to upload " + filename + " because the file was empty.";
 //        }
 //    }
-    public static final String uploadingdir = System.getProperty("user.dir") + "/uploadingdir/";
+    public static final String uploadingdir = System.getProperty("user.dir") + "/image/";
 
 
     @RequestMapping(value = "/file", method = RequestMethod.GET)
     public String getFile() {
         return "file";
+    }
+
+
+    @RequestMapping(value = "image/{imageName}")
+    @ResponseBody
+    public byte[] getImage(@PathVariable(value = "imageName") String imageName) throws IOException {
+
+        File serverFile = new File(uploadingdir + imageName + ".png");
+
+        return Files.readAllBytes(serverFile.toPath());
     }
 
     @RequestMapping(value = "/uploadSuccess", method = RequestMethod.GET)
