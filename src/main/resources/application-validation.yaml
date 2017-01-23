@@ -1,0 +1,5 @@
+# maximum user image size 3MB
+profile:
+  image:
+    upload:
+      size: 3145728

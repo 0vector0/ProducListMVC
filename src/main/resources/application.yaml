@@ -19,3 +19,5 @@ spring:
 
   thymeleaf:
     cache: false
+
+spring.profiles.include: 'validation'
