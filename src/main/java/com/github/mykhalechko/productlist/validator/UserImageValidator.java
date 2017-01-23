@@ -42,9 +42,11 @@ public class UserImageValidator implements Validator {
     private void validateForMinMaxFileSize(Errors errors, UserImageDTO userImage) {
         if (userImage.getFile().getSize() == 0) {
             errors.reject(imageEmpty);
+            System.out.println(imageEmpty);
         }
         if (userImage.getFile().getSize() > imageMaxSize) {
             errors.reject(imageToLarge);
+            System.out.println(imageToLarge);
         }
     }
 
@@ -54,6 +56,7 @@ public class UserImageValidator implements Validator {
                 ImageIO.read(input);
             } catch (Exception e) {
                 errors.reject(notImage);
+                System.out.println(notImage);
             }
         } catch (IOException e) {
             e.printStackTrace();
