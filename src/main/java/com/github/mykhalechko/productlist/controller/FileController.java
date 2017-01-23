@@ -35,9 +35,9 @@ public class FileController {
 //    }
     public static final String uploadingdir = System.getProperty("user.dir") + "/image/";
 
-
     @RequestMapping(value = "/file", method = RequestMethod.GET)
     public String getFile() {
+
         return "file";
     }
 
@@ -58,6 +58,7 @@ public class FileController {
 
     @RequestMapping(value = "/upload", method = RequestMethod.POST)
     public String uploadingPost(@RequestParam("file") MultipartFile uploadingFile) throws IOException {
+
 
         File file = new File(uploadingdir + uploadingFile.getOriginalFilename());
         uploadingFile.transferTo(file);

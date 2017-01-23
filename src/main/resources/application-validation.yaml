@@ -1,5 +1,8 @@
 # maximum user image size 3MB
-profile:
+user:
   image:
     upload:
       size: 3145728
+    empty: Select an Image to Upload...
+    not.image: File must be an image type (.png, .jpg, .gif...)
+    too.large: Image cannot be over 3 Megabytes
