@@ -34,7 +34,7 @@ public class ProductController {
     @RequestMapping(value = "/add", method = RequestMethod.GET)
     public String registration(Model model) {
         model.addAttribute("product", new Product());
-        return "addProduct";
+        return "add";
     }
 
 
