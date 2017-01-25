@@ -12,9 +12,9 @@ spring:
 #      ddl-auto: create-drop
 
   datasource:
-    url: postgres://yiekzrrogvvrot:6522744933d5d0092803a938aefa6741037a550a3934ec1f6e0940e3c04be0eb@ec2-54-243-185-99.compute-1.amazonaws.com:5432/d6v728t26omq71
-    username: yiekzrrogvvrot
-    password: 6522744933d5d0092803a938aefa6741037a550a3934ec1f6e0940e3c04be0eb
+    url: jdbc:postgresql://localhost:5432/productlist
+    username: postgres
+    password: root
     driverClassName: org.postgresql.Driver
 
   thymeleaf:
