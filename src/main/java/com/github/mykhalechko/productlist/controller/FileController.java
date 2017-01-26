@@ -39,7 +39,7 @@ public class FileController {
     @ResponseBody
     public byte[] getImage(@PathVariable(value = "imageName") String imageName) throws IOException {
 
-        UserAvatar userAvatar = userAvatarService.findUserAvatarByUserId(userService.getAuthenticationUser().getId());
+        UserAvatar userAvatar = userAvatarService.findByUserId(userService.getAuthenticationUser().getId());
         return userAvatar.getImage();
 
 //        File serverFile = new File(uploadingdir + imageName + ".jpg");
@@ -59,24 +59,18 @@ public class FileController {
             @ModelAttribute("user") User user, BindingResult bindingResult, Model model) throws IOException {
 
 
-//        UserImageDTO userImageDTO = new UserImageDTO();
-//        userImageDTO.setFile(uploadingFile);
-//        userImageValidator.validate(userImageDTO, bindingResult);
-//
-//        if (bindingResult.hasErrors()) {
-//            return "file";
-//        }
-
-////        File file = new File(uploadingdir + userService.getAuthenticationUser().getId() + "." + uploadingFile.getOriginalFilename().split("\\.")[1]);
-//        File file = new File(uploadingdir + userService.getAuthenticationUser().getId() + ".jpg");
-//        uploadingFile.transferTo(file);
-
         byte[] byteArr = uploadingFile.getBytes();
 
         UserAvatar userAvatar = new UserAvatar();
         userAvatar.setImage(byteArr);
         userAvatar.setUserId(userService.getAuthenticationUser().getId());
-        userAvatarService.save(userAvatar);
+
+        if (userAvatarService.findByUserId(userService.getAuthenticationUser().getId()) == null) {
+            userAvatarService.save(userAvatar);
+        } else {
+            userAvatar.setId(userAvatarService.findByUserId(userService.getAuthenticationUser().getId()).getId());
+            userAvatarService.edit(userAvatar);
+        }
         return "redirect:/uploadSuccess";
     }
 

@@ -8,7 +8,7 @@ public interface UserAvatarService {
 
     List<UserAvatar> findAll();
 
-    UserAvatar findUserAvatarByUserId(Long id);
+    UserAvatar findByUserId(Long id);
 
     UserAvatar findById(Long id);
 
@@ -16,4 +16,5 @@ public interface UserAvatarService {
 
     void deleteById(Long id);
 
+    UserAvatar edit(UserAvatar product);
 }

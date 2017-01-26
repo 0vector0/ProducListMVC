@@ -23,8 +23,8 @@ public class UserAvatarServiceImpl implements UserAvatarService {
 
     @Transactional
     @Override
-    public UserAvatar findUserAvatarByUserId(Long id) {
-        return userAvatarRepository.findUserAvatarByUserId(id);
+    public UserAvatar findByUserId(Long id) {
+        return userAvatarRepository.findByUserId(id);
     }
 
     @Transactional
@@ -43,6 +43,11 @@ public class UserAvatarServiceImpl implements UserAvatarService {
     @Override
     public void deleteById(Long id) {
         userAvatarRepository.delete(id);
+    }
+
+    @Override
+    public UserAvatar edit(UserAvatar product) {
+        return userAvatarRepository.saveAndFlush(product);
     }
 }
 

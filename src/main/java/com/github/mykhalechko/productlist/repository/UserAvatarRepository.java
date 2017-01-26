@@ -9,6 +9,6 @@ import org.springframework.data.repository.query.Param;
 public interface UserAvatarRepository extends JpaRepository<UserAvatar, Long> {
 
     @Query("select a from UserAvatar a where a.userId = :user_id")
-    UserAvatar findUserAvatarByUserId(@Param("user_id") Long id);
+    UserAvatar findByUserId(@Param("user_id") Long id);
 }
 
