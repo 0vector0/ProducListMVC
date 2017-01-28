@@ -10,7 +10,6 @@ public class UserAvatar implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    @Lob
     @Column(name = "image")
     private byte[] image;
     @OneToOne(mappedBy = "userAvatar")

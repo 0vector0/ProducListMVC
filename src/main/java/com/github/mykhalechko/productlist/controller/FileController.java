@@ -56,7 +56,7 @@ public class FileController {
     @RequestMapping(value = "/uploadSuccess", method = RequestMethod.GET)
     public String getUploadSuccess(Model model) {
         model.addAttribute("user", userService.getAuthenticationUser());
-        return "uploadSuccess";
+        return "user";
     }
 
     @Transactional
