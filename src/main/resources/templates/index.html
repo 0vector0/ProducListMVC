@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="layout">
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" xmlns:th="http://www.w3.org/1999/xhtml"
+      layout:decorator="layout">
 <head>
     <title>Content page</title>
 
@@ -13,6 +14,7 @@
             <p class="lead"> This is a service to create and manage shopping lists. Service was created to facilitate
                 the management of personal finances.</p>
         </div>
+        <a href="user" th:href="@{/file}"> file</a>
     </div>
 </section>
 <!--if i want to use my footer-->

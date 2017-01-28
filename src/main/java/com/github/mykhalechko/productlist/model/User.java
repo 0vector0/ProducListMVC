@@ -24,6 +24,7 @@ public class User {
     @Column(name = "email", unique = true)
     @NotEmpty
     @Email
+
     private String email;
     @Column(name = "password", nullable = false)
     private String password;
@@ -35,6 +36,17 @@ public class User {
     //    @JoinTable(name = "user_product", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "product_id"))
     @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
     private Set<Product> products = new HashSet<Product>();
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "user_avatar_id")
+    private UserAvatar userAvatar;
+
+    public UserAvatar getUserAvatar() {
+        return userAvatar;
+    }
+
+    public void setUserAvatar(UserAvatar userAvatar) {
+        this.userAvatar = userAvatar;
+    }
 
     public Set<Product> getProducts() {
         return products;
