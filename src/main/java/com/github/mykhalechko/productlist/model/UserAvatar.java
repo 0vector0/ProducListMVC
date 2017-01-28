@@ -4,27 +4,24 @@ import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
-@Table(name = "user_avatars")
+@Table(name = "user_avatar")
 public class UserAvatar implements Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-
     @Lob
     @Column(name = "image")
     private byte[] image;
+    @OneToOne(mappedBy = "userAvatar")
+    private User user;
 
-    @Column(name = "user_id", unique = true)
-    private Long userId;
-
-
-    public Long getUserId() {
-        return userId;
+    public User getUser() {
+        return user;
     }
 
-    public void setUserId(Long userId) {
-        this.userId = userId;
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public Long getId() {

@@ -23,12 +23,6 @@ public class UserAvatarServiceImpl implements UserAvatarService {
 
     @Transactional
     @Override
-    public UserAvatar findByUserId(Long id) {
-        return userAvatarRepository.findByUserId(id);
-    }
-
-    @Transactional
-    @Override
     public UserAvatar findById(Long id) {
         return userAvatarRepository.findOne(id);
     }

@@ -7,6 +7,7 @@ import com.github.mykhalechko.productlist.service.UserService;
 import com.github.mykhalechko.productlist.validator.UserImageValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
@@ -30,6 +31,7 @@ public class FileController {
 
     @RequestMapping(value = "/file", method = RequestMethod.GET)
     public String getFile(Model model) {
+
         model.addAttribute("user", userService.getAuthenticationUser());
         return "file";
     }
@@ -39,7 +41,11 @@ public class FileController {
     @ResponseBody
     public byte[] getImage(@PathVariable(value = "imageName") String imageName) throws IOException {
 
-        UserAvatar userAvatar = userAvatarService.findByUserId(userService.getAuthenticationUser().getId());
+//        UserAvatar userAvatar = userAvatarService.findByUserId(userService.getAuthenticationUser().getId());
+        Long userId = userService.getAuthenticationUser().getId();
+        User user = userService.findById(userId);
+
+        UserAvatar userAvatar = user.getUserAvatar();
         return userAvatar.getImage();
 
 //        File serverFile = new File(uploadingdir + imageName + ".jpg");
@@ -53,6 +59,7 @@ public class FileController {
         return "uploadSuccess";
     }
 
+    @Transactional
     @RequestMapping(value = "/upload", method = RequestMethod.POST)
     public String uploadingPost(
             @RequestParam("file") MultipartFile uploadingFile,
@@ -60,17 +67,17 @@ public class FileController {
 
 
         byte[] byteArr = uploadingFile.getBytes();
-
         UserAvatar userAvatar = new UserAvatar();
-        userAvatar.setImage(byteArr);
-        userAvatar.setUserId(userService.getAuthenticationUser().getId());
+        user = userService.getAuthenticationUser();
 
-        if (userAvatarService.findByUserId(userService.getAuthenticationUser().getId()) == null) {
-            userAvatarService.save(userAvatar);
-        } else {
-            userAvatar.setId(userAvatarService.findByUserId(userService.getAuthenticationUser().getId()).getId());
-            userAvatarService.edit(userAvatar);
+        userAvatar.setImage(byteArr);
+        userAvatar.setUser(user);
+        if (user.getUserAvatar() != null) {
+            userAvatarService.deleteById(user.getUserAvatar().getId());
         }
+        user.setUserAvatar(userAvatar);
+        userService.edit(user);
+
         return "redirect:/uploadSuccess";
     }
 
