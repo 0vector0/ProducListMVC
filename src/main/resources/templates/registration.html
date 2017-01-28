@@ -15,11 +15,19 @@
         </div>
         <div class="col-md-6">
             <form method="post" th:action="@{/registration}" th:object="${userForm}" class="form-registration">
+
+
+                <div class="alert alert-danger" role="alert"
+                     th:if="${#fields.hasErrors('username')}">
+                    <p>Incorrect username</p>
+                    <p th:text="${@environment.getProperty('size.userForm.username')}"></p>
+                </div>
+
+
                 <input type="hidden"
                        th:name="${_csrf.parameterName}"
                        th:value="${_csrf.token}"/>
                 <h2 class="form-registration-heading">Create your account</h2>
-
 
                 <label for="username" class="sr-only">Username</label>
                 <input type="text"
@@ -28,8 +36,10 @@
                        placeholder="Username"
                        autofocus="autofocus"
                        name="username"
-                       th:required="required"/>
+                       th:required="required"
+                       th:field="*{username}"
 
+                />
                 <label for="password" class="sr-only">Password</label>
                 <input type="password"
                        class="form-control"
