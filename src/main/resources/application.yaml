@@ -20,4 +20,9 @@ spring:
   thymeleaf:
     cache: false
 
+  http:
+    multipart:
+      max-file-size : 3KB
+      max-request-size : 3KB
+
 spring.profiles.include: 'validation'
