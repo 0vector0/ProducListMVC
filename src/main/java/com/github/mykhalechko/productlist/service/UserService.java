@@ -13,4 +13,6 @@ public interface UserService {
     User findById(Long id);
 
     public User getAuthenticationUser();
+
+    User findByEmail(String email);
 }
