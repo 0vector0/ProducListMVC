@@ -1,7 +1,7 @@
 package com.github.mykhalechko.productlist.service;
 
 
-import com.github.mykhalechko.productlist.model.User;
+import com.github.mykhalechko.productlist.entity.User;
 
 public interface UserService {
     void edit(User user);

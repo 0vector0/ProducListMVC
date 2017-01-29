@@ -1,4 +1,4 @@
-package com.github.mykhalechko.productlist.model;
+package com.github.mykhalechko.productlist.entity;
 
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotEmpty;

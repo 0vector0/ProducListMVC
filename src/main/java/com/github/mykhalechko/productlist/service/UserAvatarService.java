@@ -1,6 +1,6 @@
 package com.github.mykhalechko.productlist.service;
 
-import com.github.mykhalechko.productlist.model.UserAvatar;
+import com.github.mykhalechko.productlist.entity.UserAvatar;
 
 import java.util.List;
 

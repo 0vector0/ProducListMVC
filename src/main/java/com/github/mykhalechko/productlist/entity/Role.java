@@ -1,4 +1,4 @@
-package com.github.mykhalechko.productlist.model;
+package com.github.mykhalechko.productlist.entity;
 
 import javax.persistence.*;
 import java.util.Set;

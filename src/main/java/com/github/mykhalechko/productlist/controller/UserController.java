@@ -1,6 +1,6 @@
 package com.github.mykhalechko.productlist.controller;
 
-import com.github.mykhalechko.productlist.model.User;
+import com.github.mykhalechko.productlist.entity.User;
 import com.github.mykhalechko.productlist.service.SecurityService;
 import com.github.mykhalechko.productlist.service.UserService;
 import com.github.mykhalechko.productlist.validator.UserValidator;

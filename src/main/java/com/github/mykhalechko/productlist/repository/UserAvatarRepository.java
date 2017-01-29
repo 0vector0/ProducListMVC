@@ -1,6 +1,6 @@
 package com.github.mykhalechko.productlist.repository;
 
-import com.github.mykhalechko.productlist.model.UserAvatar;
+import com.github.mykhalechko.productlist.entity.UserAvatar;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 

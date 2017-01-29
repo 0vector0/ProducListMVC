@@ -1,6 +1,6 @@
 package com.github.mykhalechko.productlist.validator;
 
-import com.github.mykhalechko.productlist.model.User;
+import com.github.mykhalechko.productlist.entity.User;
 import com.github.mykhalechko.productlist.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
