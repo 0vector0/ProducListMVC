@@ -6,9 +6,11 @@ import com.github.mykhalechko.productlist.service.UserAvatarService;
 import com.github.mykhalechko.productlist.service.UserService;
 import com.github.mykhalechko.productlist.validator.UserImageValidator;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
+import org.springframework.util.FileCopyUtils;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -41,16 +43,16 @@ public class FileController {
     @ResponseBody
     public byte[] getImage(@PathVariable(value = "imageName") String imageName) throws IOException {
 
-//        UserAvatar userAvatar = userAvatarService.findByUserId(userService.getAuthenticationUser().getId());
         Long userId = userService.getAuthenticationUser().getId();
         User user = userService.findById(userId);
 
         UserAvatar userAvatar = user.getUserAvatar();
-        return userAvatar.getImage();
-
-//        File serverFile = new File(uploadingdir + imageName + ".jpg");
-
-//        return Files.readAllBytes(serverFile.toPath());
+        if (userAvatar != null) {
+            return userAvatar.getImage();
+        } else {
+            ClassPathResource cpr = new ClassPathResource("public/images/default-avatar.png");
+            return FileCopyUtils.copyToByteArray(cpr.getInputStream());
+        }
     }
 
     @RequestMapping(value = "/uploadSuccess", method = RequestMethod.GET)
