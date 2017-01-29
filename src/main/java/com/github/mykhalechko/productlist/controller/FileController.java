@@ -15,12 +15,11 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.validation.Valid;
 import java.io.IOException;
 
 @Controller
 public class FileController {
-
-    public static final String uploadingdir = System.getProperty("user.dir") + "/images/";
 
     @Autowired
     private UserService userService;
@@ -30,14 +29,6 @@ public class FileController {
 
     @Autowired
     private UserAvatarService userAvatarService;
-
-    @RequestMapping(value = "/file", method = RequestMethod.GET)
-    public String getFile(Model model) {
-
-        model.addAttribute("user", userService.getAuthenticationUser());
-        return "file";
-    }
-
 
     @RequestMapping(value = "images/avatars/{imageName}")
     @ResponseBody
@@ -55,7 +46,7 @@ public class FileController {
         }
     }
 
-    @RequestMapping(value = "/uploadSuccess", method = RequestMethod.GET)
+    @RequestMapping(value = "/avatarUploadSuccess", method = RequestMethod.GET)
     public String getUploadSuccess(Model model) {
         model.addAttribute("user", userService.getAuthenticationUser());
         return "user";
@@ -64,13 +55,14 @@ public class FileController {
     @Transactional
     @RequestMapping(value = "/upload", method = RequestMethod.POST)
     public String uploadingPost(
+            @Valid @ModelAttribute("userAvatar") UserAvatar userAvatar,
             @RequestParam("file") MultipartFile uploadingFile,
-            @ModelAttribute("user") User user, BindingResult bindingResult, Model model) throws IOException {
+            BindingResult bindingResult, Model model) throws IOException {
 
 
         byte[] byteArr = uploadingFile.getBytes();
-        UserAvatar userAvatar = new UserAvatar();
-        user = userService.getAuthenticationUser();
+        userAvatar = new UserAvatar();
+        User user = userService.getAuthenticationUser();
 
         userAvatar.setImage(byteArr);
         userAvatar.setUser(user);
@@ -80,7 +72,7 @@ public class FileController {
         user.setUserAvatar(userAvatar);
         userService.edit(user);
 
-        return "redirect:/uploadSuccess";
+        return "redirect:/avatarUploadSuccess";
     }
 
 }
