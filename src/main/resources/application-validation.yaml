@@ -1,14 +1,14 @@
-# maximum user image size 3MB
-user:
-  image:
-    upload:
-      size: 1048576
-    empty: Select an Image to Upload...
-    not.image: File must be an image type (.png, .jpg, .gif...)
-    too.large: Image cannot be over 3 Megabytes
-
-userForm:
-    username: Someone already has that username or please use between 2 and 32 characters.
-    password: Try one with at least 2 characters.
-    passwordConfirm: These passwords don't match.
-    email: Someone already has that email.
+## maximum user image size 3MB
+#user:
+#  image:
+#    upload:
+#      size: 1048576
+#    empty: Select an Image to Upload...
+#    not.image: File must be an image type (.png, .jpg, .gif...)
+#    too.large: Image cannot be over 3 Megabytes
+#
+#userForm:
+#    username: Someone already has that username or please use between 2 and 32 characters.
+#    password: Try one with at least 2 characters.
+#    passwordConfirm: These passwords don't match.
+#    email: Someone already has that email.
