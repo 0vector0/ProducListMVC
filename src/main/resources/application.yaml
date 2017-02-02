@@ -22,7 +22,7 @@ spring:
 
   http:
     multipart:
-      max-file-size : 3KB
-      max-request-size : 3KB
-
-spring.profiles.include: 'validation'
+      max-file-size: 10MB
+      max-request-size: 20MB
+#
+#spring.profiles.include: 'validation'
