@@ -8,40 +8,46 @@
 </head>
 <body>
 
-
 <section layout:fragment="content">
     <div class="container">
 
         <div class="col-md-3">
         </div>
         <div class="col-md-6">
-            <div class="alert alert-danger text-center" role="alert"
+            <div class="alert alert-danger alert-dismissible text-center"
+                 role="alert"
                  th:if="${#fields.hasErrors('${userForm.username}')}">
-                <p>
-                    <span>Incorrect username.</span>
-                    <span th:text="${@environment.getProperty('userForm.username')}"></span>
-                </p>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <strong>Incorrect username.</strong>
+                <span th:errors="${userForm.username}"></span>
             </div>
-            <div class="alert alert-danger text-center" role="alert"
+            <div class="alert alert-danger alert-dismissible text-center"
+                 role="alert"
                  th:if="${#fields.hasErrors('${userForm.password}')}">
-                <p>
-                    <span>Incorrect password.</span>
-                    <span th:text="${@environment.getProperty('userForm.password')}"></span>
-                </p>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <strong>Incorrect password.</strong>
+                <span th:errors="${userForm.password}"></span>
             </div>
-            <div class="alert alert-danger text-center" role="alert"
+            <div class="alert alert-danger alert-dismissible text-center"
+                 role="alert"
                  th:if="${#fields.hasErrors('${userForm.passwordConfirm}')}">
-                <p>
-                    <span>Incorrect password.</span>
-                    <span th:text="${@environment.getProperty('userForm.passwordConfirm')}"></span>
-                </p>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <span th:errors="${userForm.passwordConfirm}"></span>
             </div>
-            <div class="alert alert-danger text-center" role="alert"
+            <div class="alert alert-danger alert-dismissible text-center"
+                 role="alert"
                  th:if="${#fields.hasErrors('${userForm.email}')}">
-                <p>
-                    <span>Incorrect email.</span>
-                    <span th:text="${@environment.getProperty('userForm.email')}"></span>
-                </p>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <strong>Incorrect email.</strong>
+                <span th:errors="${userForm.email}"></span>
             </div>
 
             <form method="post" th:action="@{/registration}" th:object="${userForm}" class="form-registration">
