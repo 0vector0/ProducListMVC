@@ -12,10 +12,6 @@ import java.io.InputStream;
 @Component
 public class UserImageValidator implements Validator {
 
-    // TODO: 29.01.2017 use this fields in html page
-//    @Value("image.upload.size")
-//    private Long imageMaxSize;
-
     @Override
     public boolean supports(Class<?> aClass) {
         return aClass.equals(UserAvatarDTO.class);
