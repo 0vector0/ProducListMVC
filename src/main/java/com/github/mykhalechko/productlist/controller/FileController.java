@@ -46,17 +46,10 @@ public class FileController {
         }
     }
 
-//    @RequestMapping(value = "/avatarUploadSuccess", method = RequestMethod.GET)
-//    public String getUploadSuccess(Model model) {
-//        model.addAttribute("user", userService.getAuthenticationUser());
-//        return "user";
-//    }
-
     @Transactional
     @RequestMapping(value = "/upload", method = RequestMethod.POST)
     public String uploadingPost(
             @Valid @ModelAttribute("userAvatar") UserAvatarDTO userAvatarDTO,
-//            @RequestParam("file") MultipartFile uploadingFile,
             BindingResult bindingResult, Model model) throws IOException {
 
         imageValidator.validate(userAvatarDTO.getFile(), bindingResult);
