@@ -1,6 +1,6 @@
 package com.github.mykhalechko.productlist.service;
 
-import com.github.mykhalechko.productlist.model.UserAvatar;
+import com.github.mykhalechko.productlist.entity.UserAvatar;
 import com.github.mykhalechko.productlist.repository.UserAvatarRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

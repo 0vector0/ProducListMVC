@@ -1,8 +1,8 @@
 package com.github.mykhalechko.productlist.service;
 
 
-import com.github.mykhalechko.productlist.model.Role;
-import com.github.mykhalechko.productlist.model.User;
+import com.github.mykhalechko.productlist.entity.Role;
+import com.github.mykhalechko.productlist.entity.User;
 import com.github.mykhalechko.productlist.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;

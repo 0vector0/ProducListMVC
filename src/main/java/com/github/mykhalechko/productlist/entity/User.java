@@ -1,4 +1,4 @@
-package com.github.mykhalechko.productlist.model;
+package com.github.mykhalechko.productlist.entity;
 
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotEmpty;
@@ -14,28 +14,31 @@ public class User {
 
     @Id
     @Column(name = "id")
-//    @SequenceGenerator(name = "user_id_seq", sequenceName = "user_id_seq", allocationSize = 1)
-//    @GeneratedValue(generator = "user_id_seq", strategy = GenerationType.SEQUENCE)
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
+
     @Column(name = "username", unique = true)
     @Size(min = 2, max = 30)
     private String username;
+
     @Column(name = "email", unique = true)
     @NotEmpty
     @Email
-
     private String email;
+
     @Column(name = "password", nullable = false)
     private String password;
+
     @Transient
     private String passwordConfirm;
+
     @ManyToMany
     @JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<Role> roles;
-    //    @JoinTable(name = "user_product", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "product_id"))
+
     @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
     private Set<Product> products = new HashSet<Product>();
+
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "user_avatar_id")
     private UserAvatar userAvatar;
@@ -80,7 +83,6 @@ public class User {
     public void setPassword(String password) {
         this.password = password;
     }
-
 
     public String getUsername() {
         return username;

@@ -2,7 +2,7 @@ package com.github.mykhalechko.productlist.dto;
 
 import org.springframework.web.multipart.MultipartFile;
 
-public class UserImageDTO {
+public class UserAvatarDTO {
 
     private MultipartFile file;
 

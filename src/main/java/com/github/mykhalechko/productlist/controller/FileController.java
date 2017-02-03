@@ -1,74 +1,66 @@
 package com.github.mykhalechko.productlist.controller;
 
-import com.github.mykhalechko.productlist.model.User;
-import com.github.mykhalechko.productlist.model.UserAvatar;
+import com.github.mykhalechko.productlist.dto.UserAvatarDTO;
+import com.github.mykhalechko.productlist.entity.User;
+import com.github.mykhalechko.productlist.entity.UserAvatar;
 import com.github.mykhalechko.productlist.service.UserAvatarService;
 import com.github.mykhalechko.productlist.service.UserService;
-import com.github.mykhalechko.productlist.validator.UserImageValidator;
+import com.github.mykhalechko.productlist.validator.ImageValidator;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
+import org.springframework.util.FileCopyUtils;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
 
+import javax.validation.Valid;
 import java.io.IOException;
 
 @Controller
 public class FileController {
 
-    public static final String uploadingdir = System.getProperty("user.dir") + "/images/";
-
     @Autowired
     private UserService userService;
 
     @Autowired
-    private UserImageValidator userImageValidator;
+    private ImageValidator imageValidator;
 
     @Autowired
     private UserAvatarService userAvatarService;
-
-    @RequestMapping(value = "/file", method = RequestMethod.GET)
-    public String getFile(Model model) {
-
-        model.addAttribute("user", userService.getAuthenticationUser());
-        return "file";
-    }
-
 
     @RequestMapping(value = "images/avatars/{imageName}")
     @ResponseBody
     public byte[] getImage(@PathVariable(value = "imageName") String imageName) throws IOException {
 
-//        UserAvatar userAvatar = userAvatarService.findByUserId(userService.getAuthenticationUser().getId());
         Long userId = userService.getAuthenticationUser().getId();
         User user = userService.findById(userId);
 
         UserAvatar userAvatar = user.getUserAvatar();
-        return userAvatar.getImage();
-
-//        File serverFile = new File(uploadingdir + imageName + ".jpg");
-
-//        return Files.readAllBytes(serverFile.toPath());
-    }
-
-    @RequestMapping(value = "/uploadSuccess", method = RequestMethod.GET)
-    public String getUploadSuccess(Model model) {
-        model.addAttribute("user", userService.getAuthenticationUser());
-        return "user";
+        if (userAvatar != null) {
+            return userAvatar.getImage();
+        } else {
+            ClassPathResource cpr = new ClassPathResource("public/images/default-avatar.png");
+            return FileCopyUtils.copyToByteArray(cpr.getInputStream());
+        }
     }
 
     @Transactional
     @RequestMapping(value = "/upload", method = RequestMethod.POST)
     public String uploadingPost(
-            @RequestParam("file") MultipartFile uploadingFile,
-            @ModelAttribute("user") User user, BindingResult bindingResult, Model model) throws IOException {
+            @Valid @ModelAttribute("userAvatar") UserAvatarDTO userAvatarDTO,
+            BindingResult bindingResult, Model model) throws IOException {
 
+        imageValidator.validate(userAvatarDTO.getFile(), bindingResult);
+        if (bindingResult.hasErrors()) {
+            model.addAttribute("user", userService.getAuthenticationUser());
+            return "user";
+        }
 
-        byte[] byteArr = uploadingFile.getBytes();
+        byte[] byteArr = userAvatarDTO.getFile().getBytes();
         UserAvatar userAvatar = new UserAvatar();
-        user = userService.getAuthenticationUser();
+        User user = userService.getAuthenticationUser();
 
         userAvatar.setImage(byteArr);
         userAvatar.setUser(user);
@@ -78,7 +70,7 @@ public class FileController {
         user.setUserAvatar(userAvatar);
         userService.edit(user);
 
-        return "redirect:/uploadSuccess";
+        return "redirect:/user";
     }
 
 }

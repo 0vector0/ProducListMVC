@@ -4,26 +4,53 @@
 
 <head>
     <title>Registration</title>
-    <link rel="stylesheet" href="/css/registration.css" th:src="@{/css/registration.css}"/>
+    <link rel="stylesheet" href="/css/registration.css" th:href="@{/css/registration.css}"/>
 </head>
 <body>
 
-
 <section layout:fragment="content">
     <div class="container">
+
         <div class="col-md-3">
         </div>
         <div class="col-md-6">
+            <div class="alert alert-danger alert-dismissible text-center"
+                 role="alert"
+                 th:if="${#fields.hasErrors('${userForm.username}')}">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <strong>Incorrect username.</strong>
+                <span th:errors="${userForm.username}"></span>
+            </div>
+            <div class="alert alert-danger alert-dismissible text-center"
+                 role="alert"
+                 th:if="${#fields.hasErrors('${userForm.password}')}">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <strong>Incorrect password.</strong>
+                <span th:errors="${userForm.password}"></span>
+            </div>
+            <div class="alert alert-danger alert-dismissible text-center"
+                 role="alert"
+                 th:if="${#fields.hasErrors('${userForm.passwordConfirm}')}">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <span th:errors="${userForm.passwordConfirm}"></span>
+            </div>
+            <div class="alert alert-danger alert-dismissible text-center"
+                 role="alert"
+                 th:if="${#fields.hasErrors('${userForm.email}')}">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <strong>Incorrect email.</strong>
+                <span th:errors="${userForm.email}"></span>
+            </div>
+
             <form method="post" th:action="@{/registration}" th:object="${userForm}" class="form-registration">
-
-
-                <div class="alert alert-danger" role="alert"
-                     th:if="${#fields.hasErrors('username')}">
-                    <p>Incorrect username</p>
-                    <p th:text="${@environment.getProperty('size.userForm.username')}"></p>
-                </div>
-
-
                 <input type="hidden"
                        th:name="${_csrf.parameterName}"
                        th:value="${_csrf.token}"/>
@@ -37,9 +64,8 @@
                        autofocus="autofocus"
                        name="username"
                        th:required="required"
-                       th:field="*{username}"
+                       th:field="*{username}"/>
 
-                />
                 <label for="password" class="sr-only">Password</label>
                 <input type="password"
                        class="form-control"
@@ -47,7 +73,6 @@
                        placeholder="Password"
                        name="password"
                        th:required="required"/>
-
 
                 <label for="passwordConfirm" class="sr-only">Password Confirm</label>
                 <input type="password"
@@ -70,7 +95,6 @@
         </div>
         <div class="col-md-3">
         </div>
-
     </div>
 </section>
 </body>

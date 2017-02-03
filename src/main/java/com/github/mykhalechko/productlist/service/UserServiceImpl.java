@@ -1,7 +1,7 @@
 package com.github.mykhalechko.productlist.service;
 
 
-import com.github.mykhalechko.productlist.model.User;
+import com.github.mykhalechko.productlist.entity.User;
 import com.github.mykhalechko.productlist.repository.RoleRepository;
 import com.github.mykhalechko.productlist.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -49,5 +49,10 @@ public class UserServiceImpl implements UserService {
     public User getAuthenticationUser() {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         return findByUsername(auth.getName());
+    }
+
+    @Override
+    public User findByEmail(String email) {
+        return userRepository.findByEmail(email);
     }
 }

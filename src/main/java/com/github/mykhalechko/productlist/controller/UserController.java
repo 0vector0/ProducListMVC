@@ -1,6 +1,7 @@
 package com.github.mykhalechko.productlist.controller;
 
-import com.github.mykhalechko.productlist.model.User;
+import com.github.mykhalechko.productlist.dto.UserAvatarDTO;
+import com.github.mykhalechko.productlist.entity.User;
 import com.github.mykhalechko.productlist.service.SecurityService;
 import com.github.mykhalechko.productlist.service.UserService;
 import com.github.mykhalechko.productlist.validator.UserValidator;
@@ -56,6 +57,7 @@ public class UserController {
     @RequestMapping("/user")
     public String getUser(Model model) {
         model.addAttribute("user", userService.getAuthenticationUser());
+        model.addAttribute("userAvatar", new UserAvatarDTO());
         return "user";
     }
 }
